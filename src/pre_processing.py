@@ -45,7 +45,7 @@ def transform_text(text):
 
     return ' '.join(text)
 
-def pre_process_df(df, text_column='text', target_column='target'):
+def pre_process_df(df, text_column='text', target_column='target') -> pd.DataFrame:
     try:
         logger.debug('Start preprocessing for Dataframe')
         # Encode the target column
