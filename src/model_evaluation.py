@@ -87,33 +87,33 @@ def evaluate_model(clf, X_test : np.ndarray, y_test : np.ndarray) -> dict:
         logger.error('Unexpected error occurred while model evaluation: %s',e)
         raise
     
-def save_data(file_path : str, metrix : dict) -> None:
+def save_data(file_path : str, matrix : dict) -> None:
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         
         with open(file_path,'w') as file:
-            json.dump(metrix, file, indent=4) 
-        logger.debug('Metrix saved to %s',file_path)
+            json.dump(matrix, file, indent=4) 
+        logger.debug('Matrix saved to %s',file_path)
 
     except Exception as e:
-        logger.error('Unexpated error occurred while saving metrix: %s',e)
+        logger.error('Unexpected error occurred while saving metrix: %s',e)
         raise
     
 
 def main():
     try:
-        clf = load_model('.\model\model.pkl')
+        clf = load_model('./model/model.pkl')
         test_data = load_data('./data/processed/test_tfidf.csv')
         
         X_test = test_data.iloc[:, :-1].values
         y_test = test_data.iloc[:, -1].values
         
-        metrix = evaluate_model(clf=clf, X_test=X_test, y_test=y_test)
+        matrix = evaluate_model(clf=clf, X_test=X_test, y_test=y_test)
         
-        save_data(metrix=metrix,file_path='reports/metrix.json')
+        save_data(matrix=matrix,file_path='reports/matrix.json')
         
     except Exception as e:
-        logger.error('Unexpated error occurred while saving metrix: %s',e)
+        logger.error('Unexpected error occurred while saving matrix: %s',e)
         raise
     
 if __name__ == '__main__':
